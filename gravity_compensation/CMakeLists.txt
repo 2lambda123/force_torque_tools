@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 2.8.3)
 project(gravity_compensation)
 
 
-find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs sensor_msgs tf tf_conversions eigen_conversions)
+find_package(catkin REQUIRED COMPONENTS cmake_modules roscpp geometry_msgs sensor_msgs tf tf_conversions eigen_conversions std_srvs)
 
 find_package(Boost REQUIRED COMPONENTS thread)
 
 catkin_package(
   DEPENDS eigen
-  CATKIN_DEPENDS geometry_msgs sensor_msgs tf tf_conversions eigen_conversions
+  CATKIN_DEPENDS geometry_msgs sensor_msgs tf tf_conversions eigen_conversions std_srvs
   INCLUDE_DIRS include 
   LIBRARIES gravity_compensation
 )
@@ -31,4 +31,8 @@ install(TARGETS gravity_compensation gravity_compensation_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY include launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
